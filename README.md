@@ -18,7 +18,7 @@ Using standard linux commands and methods that should work in any implementation
 This has been a common trope in hacker/infosec circles for the past 35+ years yet I have never seen it published as a known method, or even a proof of concept. 
 
 ##
-Files:
+# Files:
 
 # ZoneGet.sh
 Simple script to query a DNS server and decode the output of an entire DNS zone where each CNAME entry in the zone is a line fragment of a double base64 encoded file created by the script ZoneMaker.sh. 
