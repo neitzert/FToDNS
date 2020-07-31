@@ -22,12 +22,15 @@ This has been a common trope in hacker/infosec circles for the past 35+ years ye
 # Files:
 
 ZoneGet.sh
+
 Simple script to query a DNS server and decode the output of an entire DNS zone where each CNAME entry in the zone is a line fragment of a double base64 encoded file created by the script ZoneMaker.sh. 
 
 ZoneMaker.sh
+
 Simple script to take a file and base64 encode it, write it into a DNS zone file for remote serving on a Bind9 DNS server.
 
 Resolver.sh
+
 A simple script to encode a file into a very large number of DNS host look up queries for later collection and reassembly on the upstream DNS server 
  
 # Disclaimers 
