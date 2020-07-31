@@ -3,7 +3,9 @@ Christopher Neitzert <chris@neitzert.com>
 ##
 
 A proof of concept that utilizes the Domain Name Service protocol, loosely, as it was intended for data delivery and exfiltration across network boundaries.
+
 This PoC should work on every Unix like operating system with GNU Core Utils and Bind9 upstream DNS servers. 
+
 Of course YMMV. 
 
 # Requirements:
@@ -13,7 +15,8 @@ Any Unix like OS, access to named's logfiles on server side, ability to use host
 Using standard linux commands and methods that should work in any implementation of sh on any Unix like operating system.
 
 # Why:
-This has been a common trope in hacker/infosec circles for the past 35+ years but I have never seen it published. 
+This has been a common trope in hacker/infosec circles for the past 35+ years yet I have never seen it published as a known method, or even a proof of concept. 
+
 
 # ZoneGet.sh
 Simple script to query a DNS server and decode the output of an entire DNS zone where each CNAME entry in the zone is a line fragment of a double base64 encoded file created by the script ZoneMaker.sh. 
@@ -26,6 +29,8 @@ A simple script to encode a file into a very large number of DNS host look up qu
  
 # Disclaimers 
 All standard disclaimers apply, no warranty, claims, or promises declared, made or implied.
+
 For educational, research, and entertainment purposes only. 
-License GPLv3, usability expires while you wait.
+
+Usability expires while you wait.
 
