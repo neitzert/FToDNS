@@ -3,31 +3,29 @@ Christopher Neitzert <chris@neitzert.com>
 ##
 
 A proof of concept that utilizes the Domain Name Service protocol, loosely, as it was intended for data delivery and exfiltration across network boundaries.
+This PoC should work on every Unix like operating system with GNU Core Utils and Bind9 upstream DNS servers. 
+Of course YMMV. 
 
-Requirements:
+# Requirements:
 Any Unix like OS, access to named's logfiles on server side, ability to use host, base64, and general shell primitive commands on client and server side, and a network between you.
 
-How:  
+# How:  
 Using standard linux commands and methods that should work in any implementation of sh on any Unix like operating system.
 
-Why:
+# Why:
 This has been a common trope in hacker/infosec circles for the past 35+ years but I have never seen it published. 
 
-ZoneGet.sh
+# ZoneGet.sh
 Simple script to query a DNS server and decode the output of an entire DNS zone where each CNAME entry in the zone is a line fragment of a double base64 encoded file created by the script ZoneMaker.sh. 
 
-ZoneMaker.sh
+# ZoneMaker.sh
 Simple script to take a file and base64 encode it, write it into a DNS zone file for remote serving on a Bind9 DNS server.
 
-Resolver.sh
-# Quick and dirty script to copy data via IPv4
-# Simply change '2001:db8:1:1:1:1:1:1' to your 
-# IPv6 Address For IPv4, removing the '-6' arg 
-# on every host command.
-
-#
-# This should work on every linux distribution with basic gnutuils install
-# Only requirements are to have access to logfile on dns server used for query
-# - may wish to consider base32 encoding for non bind9 destination servers.
-#
+# Resolver.sh
+A simple script to encode a file into a very large number of DNS host look up queries for later collection and reassembly on the upstream DNS server 
+ 
+# Disclaimers 
+All standard disclaimers apply, no warranty, claims, or promises declared, made or implied.
+For educational, research, and entertainment purposes only. 
+License GPLv3, usability expires while you wait.
 
