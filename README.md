@@ -1,7 +1,7 @@
-# FToDNS
-## Christopher Neitzert <chris@neitzert.com>
+# FToDNS: File Transfer over Domain Name Service
+##
+Christopher Neitzert <chris@neitzert.com>
 
-File Transfer over Domain Name Service
 
 A proof of concept that utilizes the Domain Name Service protocol, loosely, as it was intended for data delivery and exfiltration across network boundaries.
 
