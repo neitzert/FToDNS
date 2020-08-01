@@ -18,6 +18,7 @@ There have been several impliementations of this concept and this Proof of Conce
 Although this implementation is not based on the previous PoCs, several interesting methods will be linked in the [Erratum.txt](https://github.com/neitzert/FToDNS/blob/master/Erratum.txt)
 
 ---
+---
 
 ### How it works
 This is assuming that any of this works, and a given that there are plenty of better ways to do it. 
@@ -78,6 +79,7 @@ Additionally, there are two verbs in a basic file transfer; We will call them 'P
 
 
 ---
+---
 
 
 ### Proof of Concept Criteria and Requirements
@@ -116,6 +118,8 @@ Additionally, there are two verbs in a basic file transfer; We will call them 'P
 			1. - [ ]Write file
 
 
+---
+---
 
 ### How to Mitigate:
 This specific Proof of Concept creates several issues with its issuance and this document would not be complete without a short discussion on mitigation.
@@ -129,12 +133,14 @@ This specific Proof of Concept creates several issues with its issuance and this
 	1. Restrict zone transfers 
 	1. Disable recursive checks and retrievals.	
 	
-1. Fuzz
+1. Fuzzing
 	1. Timing and Frequency
 	1. Query length
 	1. Text Encoding
 	1. 
 
+---
+---
 
 
 ## File Descriptions:
@@ -153,6 +159,9 @@ Simple script to query a DNS server and decode the output of an entire DNS zone 
 
 Simple script to take a file and base64 encode it, write it into a DNS zone file for remote serving on a Bind9 DNS server.
 
+
+---
+---
 
 
  
