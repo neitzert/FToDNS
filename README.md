@@ -3,6 +3,7 @@ Christopher Neitzert <chris@neitzert.com>
 
 ### What:
 A proof of concept that utilizes the Domain Name Service protocol, loosely, as it was intended for data delivery and exfiltration across network boundaries.
+
 ---
 
 ### Why:
@@ -16,12 +17,16 @@ This PoC aims to be a few stray sparks near that issue.
 There have been several impliementations of this concept and this Proof of Concept is not unique. 
 Although this implementation is not based on the previous PoCs, several interesting methods will be linked in the [Erratum.txt](https://github.com/neitzert/FToDNS/blob/master/Erratum.txt)
 
+---
+
 ### How it works
 This is assuming that any of this works, and a given that there are plenty of better ways to do it. 
 
 There are two types of landscape a DNS server exists in, for the purposes of this PoC we will call them Direct and Recursive.
 
 Additionally, there are two verbs in a basic file transfer; We will call them 'Put File' and 'Get file'.
+
+---
 
 #### Landscape:
 ##### Direct Client to Server
@@ -41,6 +46,7 @@ Additionally, there are two verbs in a basic file transfer; We will call them 'P
 * The Authoritative Server responds with an answer or error to the Local Server.
 * The Local Server then relays that information to the DNS client.
 
+---
 
 #### Verbs
 
@@ -58,6 +64,7 @@ Additionally, there are two verbs in a basic file transfer; We will call them 'P
 		* ex: 
 			* cat $NAMED_LOGFILE | grep .io | grep cache | cut -f2 -d"("| cut -f1 -d"." | base64 -d > $DESIRED_FILE_OUTPUT
 
+---
 
 #### Get File
 ![DNS](/images/FToDNS_GetFile.png)
@@ -69,6 +76,8 @@ Additionally, there are two verbs in a basic file transfer; We will call them 'P
 		* ex:  As shown in [ZoneGet] (https://github.com/neitzert/FToDNS/blob/master/ZoneGet.sh) 
 			* host -t axfr $1 $2|grep $3 | sort -n| cut -f2 -d"-"| cut -f1 -d"."|/bin/base64 -d |/bin/base64 -d > $DESIRED_FILE_OUTPUT 
 
+
+---
 
 
 ### Proof of Concept Criteria and Requirements
