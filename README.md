@@ -21,11 +21,11 @@ Although this implementation is not based on the previous PoCs, several interest
 ---
 
 ### How it works
-This is assuming that any of this works, and a given that there are plenty of better ways to do it. 
+This is assuming that any of this works, and that there are plenty of better ways to do it. 
 
-There are two types of landscape a DNS server exists in, for the purposes of this PoC we will call them Direct and Recursive.
+There are two types of 'landscape' a DNS server exists in, for the purposes of this PoC we will call them Direct and Recursive.
 
-Additionally, there are two verbs in a basic file transfer; We will call them 'Put File' and 'Get file'.
+Additionally, there are two 'verbs' that happen in a basic file transfer; We will call them 'Put File' and 'Get file'.
 
 
 #### Landscape:
