@@ -4,7 +4,6 @@ Christopher Neitzert <chris@neitzert.com>
 ### What:
 A proof of concept that utilizes the Domain Name Service protocol, loosely, as it was intended for data delivery and exfiltration across network boundaries.
 
----
 
 ### Why:
 This primarily is an intellectual exercise relating to practical information security in a networked environment.
@@ -18,7 +17,6 @@ There have been several impliementations of this concept and this Proof of Conce
 Although this implementation is not based on the previous PoCs, several interesting methods will be linked in the [Erratum.txt](https://github.com/neitzert/FToDNS/blob/master/Erratum.txt)
 
 ---
----
 
 ### How it works
 This is assuming that any of this works, and a given that there are plenty of better ways to do it. 
@@ -27,16 +25,15 @@ There are two types of landscape a DNS server exists in, for the purposes of thi
 
 Additionally, there are two verbs in a basic file transfer; We will call them 'Put File' and 'Get file'.
 
----
 
 #### Landscape:
+
 ##### Direct Client to Server
 ![DNS](/images/DNS_Generic.png)
 * A typical DNS client queries a DNS server for a host or zone.
 * It might traverse a firewall or two as it crosses the internet
 * The DNS server responds to the DNS client with an answer or error
 
----
 
 ##### Client to Recursive Server to Authoritative Server
 ![DNS](/images/DNS_Recursion.png)
@@ -47,7 +44,6 @@ Additionally, there are two verbs in a basic file transfer; We will call them 'P
 * The Authoritative Server responds with an answer or error to the Local Server.
 * The Local Server then relays that information to the DNS client.
 
----
 
 #### Verbs
 
@@ -65,7 +61,7 @@ Additionally, there are two verbs in a basic file transfer; We will call them 'P
 		* ex: 
 			* cat $NAMED_LOGFILE | grep .io | grep cache | cut -f2 -d"("| cut -f1 -d"." | base64 -d > $DESIRED_FILE_OUTPUT
 
----
+
 
 #### Get File
 ![DNS](/images/FToDNS_GetFile.png)
@@ -78,7 +74,6 @@ Additionally, there are two verbs in a basic file transfer; We will call them 'P
 			* host -t axfr $1 $2|grep $3 | sort -n| cut -f2 -d"-"| cut -f1 -d"."|/bin/base64 -d |/bin/base64 -d > $DESIRED_FILE_OUTPUT 
 
 
----
 ---
 
 
@@ -119,7 +114,6 @@ Additionally, there are two verbs in a basic file transfer; We will call them 'P
 
 
 ---
----
 
 ### How to Mitigate:
 This specific Proof of Concept creates several issues with its issuance and this document would not be complete without a short discussion on mitigation.
@@ -140,7 +134,6 @@ This specific Proof of Concept creates several issues with its issuance and this
 	1. 
 
 ---
----
 
 
 ## File Descriptions:
@@ -160,7 +153,6 @@ Simple script to query a DNS server and decode the output of an entire DNS zone 
 Simple script to take a file and base64 encode it, write it into a DNS zone file for remote serving on a Bind9 DNS server.
 
 
----
 ---
 
 
