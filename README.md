@@ -3,14 +3,15 @@ Christopher Neitzert <chris@neitzert.com>
 
 ---
 
-### What:
-A proof of concept that utilizes the Domain Name Service protocol, loosely, as it was intended for data delivery and exfiltration across network boundaries.
+## What:
+A Proof of Concept that utilizes the Domain Name Service protocol, loosely, as it was intended for data delivery and 
+exfiltration across network boundaries limited  function on any standard Linux distribution with standard GNU Core utils and ISC's Bind9.
 
 
-### Why:
+## Why:
 This primarily is an intellectual exercise relating to practical information security in a networked environment.
 
-The use of DNS for data exfiltration or VPN has been a hacker trope for the four decades that DNS has existed. 
+The use of DNS for data exfiltration or VPN has been a hacker trope for the nearly four decades that DNS has existed. 
 The recent introduction of [DNS over HTTPS](https://en.wikipedia.org/wiki/DNS_over_HTTPS) takes an already incendiary security issue and douses it with petroleum.
 
 This PoC aims to be a few stray sparks near that issue. 
@@ -20,7 +21,8 @@ Although this implementation is not based on the previous PoCs, several interest
 
 ---
 
-### How it works
+## How it works
+
 This is assuming that any of this works, and that there are plenty of better ways to do it. 
 
 There are two types of 'landscape' a DNS server exists in, for the purposes of this PoC we will call them Direct and Recursive.
@@ -28,13 +30,14 @@ There are two types of 'landscape' a DNS server exists in, for the purposes of t
 Additionally, there are two 'verbs' that happen in a basic file transfer; We will call them 'Put File' and 'Get file'.
 
 
-#### Landscape:
+### Landscape:
 
 #### Direct Client to Server
 ![DNS](/images/DNS_Generic.png)
 * A typical DNS client queries a DNS server for a host or zone.
 * It might traverse a firewall or two as it crosses the internet
 * The DNS server responds to the DNS client with an answer or error
+
 
 #### Client to Recursive Server to Authoritative Server
 ![DNS](/images/DNS_Recursion.png)
@@ -46,7 +49,9 @@ Additionally, there are two 'verbs' that happen in a basic file transfer; We wil
 * The Local Server then relays that information to the DNS client.
 
 
-#### Verbs
+
+### Verbs
+
 
 #### Put File
 ![DNS](/images/FToDNS_PutFile.png)
@@ -78,7 +83,8 @@ Additionally, there are two 'verbs' that happen in a basic file transfer; We wil
 ---
 
 
-### Proof of Concept Criteria and Requirements
+## Proof of Concept Criteria and Requirements
+
 1. PoC Criteria
 	1. Proof of concept must be limited to tools built into the OS plus Bind9 for DNS service.
 	1. Some sort of TCP-IP network between client & server that permits DNS between Client and Server. 
@@ -116,7 +122,8 @@ Additionally, there are two 'verbs' that happen in a basic file transfer; We wil
 
 ---
 
-### How to Mitigate:
+## Mitigation:
+
 This specific Proof of Concept creates several issues with its issuance and this document would not be complete without a short discussion on mitigation.
 
 1. Network
