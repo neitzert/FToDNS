@@ -30,14 +30,13 @@ Additionally, there are two 'verbs' that happen in a basic file transfer; We wil
 
 #### Landscape:
 
-##### Direct Client to Server
+#### Direct Client to Server
 ![DNS](/images/DNS_Generic.png)
 * A typical DNS client queries a DNS server for a host or zone.
 * It might traverse a firewall or two as it crosses the internet
 * The DNS server responds to the DNS client with an answer or error
 
-
-##### Client to Recursive Server to Authoritative Server
+#### Client to Recursive Server to Authoritative Server
 ![DNS](/images/DNS_Recursion.png)
 * A typical DNS client queries a DNS server for a host or zone.
 * Local rules might require the DNS client use a local server.
