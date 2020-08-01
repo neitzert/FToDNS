@@ -11,9 +11,44 @@ Recently with the creation of [DNS over HTTPS](https://en.wikipedia.org/wiki/DNS
 There have been several impliementations of this concept and this Proof of Concept is not unique. 
 Although this implementation is not based on the previous PoCs, several interesting methods will be linked in the [Erratum.txt](https://github.com/neitzert/FToDNS/blob/master/Erratum.txt)
 
+### How it works
+There are two types of landscape a DNS server exists in, for the purposes of this PoC we will call them Direct and Recursive.
+Additionally, there are two verbs in a basic file transfer; We will call them 'Put File' and 'Get file'.
+
+#### Landscape:
+##### Direct Client to Server
+![DNS](/images/DNS_Generic.png)
+* A typical DNS client queries a DNS server for a host or zone.
+* It might traverse a firewall or two as it crosses the internet
+* The DNS server responds to the DNS client with an answer or error
+
+##### Client to Recursive Server to Authoritative Server
+![DNS](/images/DNS_Recursion.png)
+* A typical DNS client queries a DNS server for a host or zone.
+* Local rules might require the DNS client use a local server.
+* The Local Server likely does not have the zone, so it queries the Authoritative Server on behalf of the DNS client.
+* The query might traverse a firewall or two as it crosses the internet
+* The Authoritative Server responds with an answer or error to the Local Server.
+* The Local Server then relays that information to the DNS client.
+
+#### Verbs
+
+#### Put File
+![DNS](/images/FToDNS_PutFile.png)
+* The user chooses a file and Base64 encodes the file with 56 Byte long lines
+	* One consideration is a multiple encoding method to correct for out of order query-server-log issues.
+		* ex: base64 -w56 $FILE | cat -n | base64 -w56 > file_to_be_put
+
+
+#### Get File
+![DNS](/images/FToDNS_GetFile.png)
+* A typical DNS client queries
+
+
+
 ### Proof of Concept Criteria and Requirements
 1. PoC Criteria
-	1. Proof of concept must be limited to tools built into the OS
+	1. Proof of concept must be limited to tools built into the OS plus Bind9 for DNS service.
 	1. Some sort of TCP-IP network between client & server that permits DNS between Client and Server. 
 	1. Proof of concept must be able to, via the DNS protocol, 
 		1. Copy a file from a remote server to a local client across a network
@@ -49,14 +84,28 @@ Although this implementation is not based on the previous PoCs, several interest
 
 
 
-### Requirements:
-Any Unix like OS, access to named's logfiles on server side, ability to use host, base64, and general shell primitive commands on client and server side, and a network between the client and server.
+
+### How to Mitigate:
+This specific Proof of Concept creates several issues with its issuance and this document would not be complete without a short discussion on mitigation.
+
+1. Network
+	1. Limit Talkers
+	1. Record DNS 'meta data'
+	1. 
+	
+1. DNS Server Architecture
+	1. Restrict zone transfers 
+	1. Disable recursive checks and retrievals.	
+	
+1. Fuzz
+	1. Timing and Frequency
+	1. Query length
+	1. Text Encoding
+	1. 
 
 
 
-
-
-### Files:
+### File Descriptions:
 
 ####Resolver.sh
 
