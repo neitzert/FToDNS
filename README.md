@@ -9,7 +9,7 @@ The use of DNS for data exfiltration or VPN has been a hacker trope for the four
 Recently with the creation of [DNS over HTTPS](https://en.wikipedia.org/wiki/DNS_over_HTTPS) in order to protect those that may be censored we inadvertadnly create an uncontrolable channel for data in/exfiltration.
 
 There have been several impliementations of this concept and this Proof of Concept is not unique. 
-Although this implementation is not based on the previous PoCs, several interesting methods will be linked in the [Erratum.txt](https://github.com/neitzert/FToDNS/Erratum.txt)
+Although this implementation is not based on the previous PoCs, several interesting methods will be linked in the [Erratum.txt](https://github.com/neitzert/FToDNS/blob/master/Erratum.txt)
 
 ### Proof of Concept Criteria and Requirements
 1. PoC Criteria
