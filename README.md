@@ -4,15 +4,13 @@ Christopher Neitzert <chris@neitzert.com>
 ### What:
 A proof of concept that utilizes the Domain Name Service protocol, loosely, as it was intended for data delivery and exfiltration across network boundaries.
 
-		* Any adequate form of encryption is indistinguishable from noise
-		* Any form of indistinguishable noise therefore may be adequate encryption
-
 ### Why:
 This primarily is an intellectual exercise relating to practical information security in a networked environment.
 
 The use of DNS for data exfiltration or VPN has been a hacker trope for the four decades that DNS has existed. 
 The recent introduction of [DNS over HTTPS](https://en.wikipedia.org/wiki/DNS_over_HTTPS) takes an already incendiary security issue and douses it with petroleum.
-This post aims to be a few stray sparks near that issue. 
+
+This PoC aims to be a few stray sparks near that issue. 
 
 There have been several impliementations of this concept and this Proof of Concept is not unique. 
 Although this implementation is not based on the previous PoCs, several interesting methods will be linked in the [Erratum.txt](https://github.com/neitzert/FToDNS/blob/master/Erratum.txt)
@@ -21,11 +19,12 @@ Although this implementation is not based on the previous PoCs, several interest
 This is assuming that any of this works, and a given that there are plenty of better ways to do it. 
 
 There are two types of landscape a DNS server exists in, for the purposes of this PoC we will call them Direct and Recursive.
+
 Additionally, there are two verbs in a basic file transfer; We will call them 'Put File' and 'Get file'.
 
 #### Landscape:
 ##### Direct Client to Server
-![DNS](/images/DNS_Generic.png)
+	![DNS](/images/DNS_Generic.png)
 * A typical DNS client queries a DNS server for a host or zone.
 * It might traverse a firewall or two as it crosses the internet
 * The DNS server responds to the DNS client with an answer or error
