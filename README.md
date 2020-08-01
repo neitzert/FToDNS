@@ -1,4 +1,4 @@
-# FToDNS: File Transfer over Domain Name Service
+## FToDNS: File Transfer over Domain Name Service
 Christopher Neitzert <chris@neitzert.com>
 
 ### What:
