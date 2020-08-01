@@ -24,7 +24,7 @@ Additionally, there are two verbs in a basic file transfer; We will call them 'P
 
 #### Landscape:
 ##### Direct Client to Server
-	![DNS](/images/DNS_Generic.png)
+![DNS](/images/DNS_Generic.png)
 * A typical DNS client queries a DNS server for a host or zone.
 * It might traverse a firewall or two as it crosses the internet
 * The DNS server responds to the DNS client with an answer or error
