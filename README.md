@@ -3,6 +3,7 @@ Christopher Neitzert <chris@neitzert.com>
 
 ### What:
 A proof of concept that utilizes the Domain Name Service protocol, loosely, as it was intended for data delivery and exfiltration across network boundaries.
+---
 
 ### Why:
 This primarily is an intellectual exercise relating to practical information security in a networked environment.
@@ -29,6 +30,8 @@ Additionally, there are two verbs in a basic file transfer; We will call them 'P
 * It might traverse a firewall or two as it crosses the internet
 * The DNS server responds to the DNS client with an answer or error
 
+---
+
 ##### Client to Recursive Server to Authoritative Server
 ![DNS](/images/DNS_Recursion.png)
 * A typical DNS client queries a DNS server for a host or zone.
@@ -37,6 +40,7 @@ Additionally, there are two verbs in a basic file transfer; We will call them 'P
 * The query might traverse a firewall or two as it crosses the internet
 * The Authoritative Server responds with an answer or error to the Local Server.
 * The Local Server then relays that information to the DNS client.
+
 
 #### Verbs
 
