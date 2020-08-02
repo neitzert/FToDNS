@@ -14,7 +14,7 @@ This primarily is an intellectual exercise relating to practical information sec
 The use of DNS for data exfiltration or VPN has been a hacker trope for the nearly four decades that DNS has existed. 
 The recent introduction of [DNS over HTTPS](https://en.wikipedia.org/wiki/DNS_over_HTTPS) takes an already incendiary security issue and douses it with petroleum.
 
-This PoC aims to be a few stray sparks near that issue. 
+This PoC is meant to be seen as your drunken neighbor playing with fireworks far too close for comfort.
 
 There have been several impliementations of this concept and this Proof of Concept is not unique. 
 Although this implementation is not based on the previous PoCs, several interesting methods will be linked in the [Erratum.txt](https://github.com/neitzert/FToDNS/blob/master/Erratum.txt)
@@ -22,12 +22,15 @@ Although this implementation is not based on the previous PoCs, several interest
 ---
 
 ## How it works
+Given the multitude of ways DNS can be integrated into an infrastructure we will describe the PoC in two ways; Landscape and Verbs. 
 
-This is assuming that any of this works, and that there are plenty of better ways to do it. 
 
-There are two types of 'landscape' a DNS server exists in, for the purposes of this PoC we will call them Direct and Recursive.
+There are two generic types of 'Landscape' that DNS servers exists in, 'Direct' and 'Recursive'. 
+From the perspective of bad actor in the PoC a recursive server is just another hop in the communication.
 
 Additionally, there are two 'verbs' that happen in a basic file transfer; We will call them 'Put File' and 'Get file'.
+
+
 
 
 ### Landscape:
