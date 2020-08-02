@@ -30,6 +30,8 @@ Given the multitude of ways DNS can be integrated into an infrastructure and the
 * Verbs:  What actions happen.
 
 
+
+
 ### Types
 ![TYPES of System](/images/FToDNS_Types.png)
 * The three types of system operating within this PoC.
@@ -38,7 +40,7 @@ Given the multitude of ways DNS can be integrated into an infrastructure and the
 * DNS Client: The resolver that queries the Domain Name Service to resolve addresses.
  
 ### Landscape:
-* Two types of Landscape that DNS servers exists in, 'Direct Client to Server' and 'Client to Recursive Server to Authoritative' (AKA: Recursive). 
+Two types of Landscape that DNS servers exists in, 'Direct Client to Server' and 'Client to Recursive Server to Authoritative' (AKA: Recursive). 
 From the perspective of bad actor in the PoC the a recursive landscape contains additional hops in the communication flow from client to server.
 
 
