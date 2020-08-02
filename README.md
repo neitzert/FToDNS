@@ -15,7 +15,7 @@ This primarily is an intellectual exercise relating to practical information sec
 
 The use of DNS for data exfiltration or VPN has been a hacker trope for the nearly four decades that DNS has existed.  
 There have been several impliementations of this concept and this Proof of Concept is not unique. 
-Although this implementation is not based on the previous PoCs and there are certainly other ways to do this, all of that will live in [Erratum](https://github.com/neitzert/FToDNS/blob/master/Erratum.txt).
+Although this implementation is not based on the previous PoCs and there are certainly other ways to do this, all of that will live in [Erratum](https://github.com/neitzert/FToDNS/blob/master/Erratum.md).
 
 
 The recent introduction of [DNS over HTTPS](https://en.wikipedia.org/wiki/DNS_over_HTTPS) takes an already incendiary security issue and douses it with petroleum.
