@@ -42,7 +42,7 @@ The three types of system operating within this PoC:
 
 ![TYPES of System](/images/FToDNS_Types.png)
 1. Authoritative DNS Server:  A DNS server that behaves as though it is an authoritative resource of Domain Name information.
-2. Recursive DNS Server: A DNS server that is not an authoritative resource of Domain Name infomration, but retreives it for the DNS Client.
+2. Recursive DNS Server: A DNS server that is not an authoritative resource of Domain Name information, but retreives it for the DNS Client.
 3. DNS Client: The resolver that queries the Domain Name Service to resolve addresses.
  
 ### Landscape:
