@@ -128,8 +128,9 @@ Where 'to put' a file is to copy towards and 'to get' a file is to copy from oth
 1. Types of Test 
 	1. Due to the complexity of the PoC, this will be broken down into multiple types of PoC
 		1. - [x]Direct Client to Server
-			1. - [x]Read file 
-			1. - [x]Write file
+			1. - [x]Read file:  
+					* Run: "./ZoneGet.sh bad.lan ns.rains.io payload > output.pdf"
+			1. - [x]Write file  
 		1. - [ ]Client to Recursive to Authoritative
 			1. - [ ]Read file
 			1. - [ ]Write file
@@ -148,14 +149,16 @@ This specific Proof of Concept creates several issues with its issuance and this
 	1. Record DNS 'meta data'
 	1. Limit 'top talkers' 
 	1. Network limits on DNS resolutions per minute
-	1. 
+	1. Restrict non-authorized DNS servers at network level
+	
 	
 1. DNS Server Architecture & Configuration
-	1. Restrict zone transfers (by default iirc)
-	1. Disable zone transfer within recursive servers
-	1. Disable recursive checks and retrievals.	
-	1. 
-	1. 
+	1. Restrict zone transfers at zone level
+	1. Alert on any zone transfers - usually strange things afoot
+	1. Disable recursive checks and retrievals
+	1. Strict control of domain heirarchy
+	1. Control and notification of new zones in domain heiarchy 
+	1. add more here
 	
 1. Fuzzing
 	1. Timing and Frequency
@@ -164,7 +167,7 @@ This specific Proof of Concept creates several issues with its issuance and this
 		1. Text format/encipherment
 		1. Chop length
 		1. Line numbering
-		1. 
+		1. add more here
 
 ---
 
