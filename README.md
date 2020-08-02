@@ -23,25 +23,24 @@ Although this implementation is not based on the previous PoCs, several interest
 ---
 
 ## How it works
-Given the multitude of ways DNS can be integrated into an infrastructure we will describe the PoC in three high level and generic terms; Type, Landscape and Verbs. 
 
-
-There are two generic types of 'Landscape' that DNS servers exists in, 'Direct Client to Server' and 'Client to Recursive Server to Authoritative' (AKA: Recursive). 
-From the perspective of bad actor in the PoC the a recursive landscape contains additional hops in the communication flow from client to server.
-
-The two 'Verbs' that happen in a basic file transfer; We will call them 'Put File' and 'Get file'. 
-Where to put a file is to copy towards and to get a file is to copy from other systems.
+Given the multitude of ways DNS can be integrated into an infrastructure and the limited number of actions we wish to test we will describe the PoC in three high level and generic terms; 
+* Type: What type of server are they.
+* Landscape:  What is it's configuraiton.
+* Verbs:  What actions happen.
 
 
 ### Types
-
 ![TYPES of System](/images/FToDNS_Types.png)
-The three types of system operating within this PoC.
+* The three types of system operating within this PoC.
 * Authoritative DNS Server:  A DNS server that behaves as though it is an authoritative resource of Domain Name information.
 * Recursive DNS Server: A DNS server that is not an authoritative resource of Domain Name infomration, but retreives it for the DNS Client.
 * DNS Client: The resolver that queries the Domain Name Service to resolve addresses.
  
 ### Landscape:
+* Two types of Landscape that DNS servers exists in, 'Direct Client to Server' and 'Client to Recursive Server to Authoritative' (AKA: Recursive). 
+From the perspective of bad actor in the PoC the a recursive landscape contains additional hops in the communication flow from client to server.
+
 
 #### Direct Client to Server
 ![Generic DNS](/images/DNS_Generic.png)
@@ -60,8 +59,9 @@ The three types of system operating within this PoC.
 * The Local Server then relays that information to the DNS client.
 
 
-
 ### Verbs
+* The two 'Verbs' that happen in a basic file transfer; We will call them 'Put File' and 'Get file'. 
+* Where to put a file is to copy towards and to get a file is to copy from other systems.
 
 #### Put File
 ![DNS](/images/FToDNS_PutFile.png)
