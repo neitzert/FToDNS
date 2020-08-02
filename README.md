@@ -15,7 +15,9 @@ This primarily is an intellectual exercise relating to practical information sec
 
 The use of DNS for data exfiltration or VPN has been a hacker trope for the nearly four decades that DNS has existed.  
 There have been several impliementations of this concept and this Proof of Concept is not unique. 
-Although this implementation is not based on the previous PoCs and there are certainly other ways to do this, all of that will live in [Erratum.txt](https://github.com/neitzert/FToDNS/blob/master/Erratum.txt)
+Although this implementation is not based on the previous PoCs and there are certainly other ways to do this, all of that will live in [Erratum](https://github.com/neitzert/FToDNS/blob/master/Erratum.txt).
+
+
 The recent introduction of [DNS over HTTPS](https://en.wikipedia.org/wiki/DNS_over_HTTPS) takes an already incendiary security issue and douses it with petroleum.
 
 The PoC hope's to bring light to these challenges by playing with fireworks uncomfortably close to that incendiary security issue doused with petroleum. 
@@ -202,5 +204,5 @@ Simple script to take a file and base64 encode it, write it into a DNS zone file
  
 ## Disclaimers 
 All standard disclaimers apply, For educational, research, and entertainment purposes only. 
-Use at your own risk, Your Mileage May Vary, offer expires while you wait.
+Use at your own risk. Your mileage may vary. Offer expires while you wait.
 
