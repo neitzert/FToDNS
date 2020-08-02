@@ -36,6 +36,7 @@ Given the multitude of ways DNS can be integrated into an infrastructure and the
 
 ### Types
 The three types of system operating within this PoC:
+
 ![TYPES of System](/images/FToDNS_Types.png)
 1. Authoritative DNS Server:  A DNS server that behaves as though it is an authoritative resource of Domain Name information.
 2. Recursive DNS Server: A DNS server that is not an authoritative resource of Domain Name infomration, but retreives it for the DNS Client.
@@ -71,7 +72,6 @@ Where 'to put' a file is to copy towards and 'to get' a file is to copy from oth
 ![DNS](/images/FToDNS_PutFile.png)
 * The user chooses a file and Base64 encodes the file with 56 Byte long lines
 	* 56 Byte long lines are chosen due to the maxium size of a DNS CNAME(63 bytes)
-	* 
 	* One consideration is a multiple encoding method to correct for out of order query-server-log issues.
 		* ex: 
 			* base64 -w56 $FILE | cat -n | base64 -w56 > file_to_be_put
@@ -95,7 +95,8 @@ Where 'to put' a file is to copy towards and 'to get' a file is to copy from oth
 	* The user who wishes to get the file then performs a zone transfer and extracts the file by the inverse method of it's encoding.
 		* ex:  As shown in [ZoneGet] (https://github.com/neitzert/FToDNS/blob/master/ZoneGet.sh) 
 			* host -t axfr $1 $2|grep $3 | sort -n| cut -f2 -d"-"| cut -f1 -d"."|/bin/base64 -d |/bin/base64 -d > $DESIRED_FILE_OUTPUT 
-
+	* Test this on a live DNS server from your favorite Linux box:
+		> host -t axfr bad.lan ns.rains.io |grep payload | sort -n| cut -f2 -d"-"| cut -f1 -d"."|/bin/base64 -d |/bin/base64 -d > output.pdf
 
 ---
 
