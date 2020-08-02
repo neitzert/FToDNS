@@ -151,8 +151,8 @@ Where 'to put' a file is to copy towards and 'to get' a file is to copy from oth
 
 ## Mitigation:
 
-This specific Proof of Concept creates several issues with its issuance and this document would not be complete without a short discussion on mitigation.
-
+This specific Proof of Concept creates several issues and this document would not be complete without a short discussion on mitigation.
+That discussion will eventually go here and the following are a list of topics I hope to address.
 1. Network
 	1. Record DNS 'meta data'
 	1. Limit 'top talkers' 
