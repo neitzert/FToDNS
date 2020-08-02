@@ -20,7 +20,7 @@ Although this implementation is not based on the previous PoCs and there are cer
 
 The recent introduction of [DNS over HTTPS](https://en.wikipedia.org/wiki/DNS_over_HTTPS) takes an already incendiary security issue and douses it with petroleum.
 
-The PoC hope's to bring light to these challenges by playing with fireworks uncomfortably close to that incendiary security issue doused with petroleum. 
+The PoC hope's to bring light to these challenges by playing with fireworks uncomfortably close to that petroleum soaked security issue. 
 
 Now, if you would please hold my beer,
 
